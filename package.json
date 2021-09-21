@@ -6,7 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --ignore-path .gitignore --write ."
   },
   "dependencies": {
     "@testing-library/jest-dom": "5.14.1",
@@ -21,6 +22,11 @@
     "react-scripts": "4.0.3",
     "typescript": "4.4.3",
     "web-vitals": "1.1.2"
+  },
+  "devDependencies": {
+    "prettier": "2.4.1",
+    "pretty-quick": "3.1.1",
+    "simple-git-hooks": "2.6.1"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx pretty-quick --staged"
   }
 }
