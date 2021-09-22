@@ -1,30 +1,33 @@
 import { BrowserRouter, Link, Route } from 'react-router-dom'
-import { Context } from './context'
-import { CustomHooks } from './custom-hooks'
-import { UseEffect } from './use-effect'
-import { UseReducer } from './use-reducer'
-import { UseReducerOriginal } from './use-reducer-original'
-import { UseStateImmutable } from './use-state-immutable'
-import { UseReducerWithOptions } from './use-reducer-with-options'
-import { UseReducerRefactor1 } from './use-reducer-refactor-1'
-import { UseReducerRefactor2 } from './use-reducer-refactor-2'
+import { Context } from './context/context'
+import { CustomHooks } from './hooks/custom-hooks'
+import { UseEffect } from './hooks/use-effect'
+import { UseReducer } from './reducer/use-reducer'
+import { UseReducerOriginal } from './reducer/use-reducer-original'
+import { UseStateImmutable } from './hooks/use-state-immutable'
+import { UseReducerWithOptions } from './reducer/use-reducer-with-options'
+import { UseReducerRefactor1 } from './reducer/use-reducer-refactor-1'
+import { UseReducerRefactor2 } from './reducer/use-reducer-refactor-2'
 import { UseReducerRefactor3 } from './reducer/use-reducer-refactor-3'
-import { NumericInput } from './numeric-input'
+import { NumericInput } from './forms/numeric-input'
 import { BindStyleCustomProperty } from './bind-style-custom-property'
 import styles from './app.module.css'
 import { Styling } from './styling'
-import { ThemeContextComponent } from './theme-context'
-import { ClassComponent } from './class-component'
-import { AppErrorBoundary } from './error-boundaries'
-import { Timer } from './timer'
-import { UseRef } from './use-ref'
+import { ThemeContextComponent } from './context/theme-context'
+import { ClassComponent } from './hooks/class-component'
+import { AppErrorBoundary } from './error-boundaries/error-boundaries'
+import { Timer } from './hooks/timer'
+import { UseRef } from './hooks/use-ref'
 import { FC } from 'react'
+import { UseState } from './hooks/use-state'
 
 export const App: FC = () => (
   <BrowserRouter>
     <Route path="/" exact>
       <main className={styles.wrapper}>
         <header className={styles.header}>
+          <Link to="/use-state">Use State</Link>
+          <Link to="/use-state-immutable">Use State Immutable</Link>
           <Link to="/numeric-input">Numeric Input</Link>
           <Link to="/styling">Styling</Link>
           <Link to="/context">Context</Link>
@@ -36,7 +39,6 @@ export const App: FC = () => (
           <Link to="/use-reducer-original">Use Reducer Original</Link>
           <Link to="/use-reducer-refactor-1">Use Reducer Refactor 1</Link>
           <Link to="/use-reducer-refactor-2">Use Reducer Refactor 2</Link>
-          <Link to="/use-state-immutable">Use State Immutable</Link>
           <Link to="/bind-style-custom-property">Bind Style Custom Property</Link>
           <Link to="/class-component">Class component</Link>
           <Link to="/error-boundary">Error boundary</Link>
@@ -84,6 +86,9 @@ export const App: FC = () => (
     <Route path="/use-reducer-original">
       <UseReducerOriginal />
     </Route>
+    <Route path="/use-state">
+      <UseState />
+    </Route>{' '}
     <Route path="/use-state-immutable">
       <UseStateImmutable />
     </Route>
