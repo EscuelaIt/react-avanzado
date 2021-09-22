@@ -22,6 +22,7 @@
     "typescript": "4.4.3"
   },
   "devDependencies": {
+    "msw": "0.35.0",
     "prettier": "2.4.1",
     "pretty-quick": "3.1.1",
     "simple-git-hooks": "2.6.1"
@@ -43,6 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   },
   "simple-git-hooks": {
     "pre-commit": "npx pretty-quick --staged"
