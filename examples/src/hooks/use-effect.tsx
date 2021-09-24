@@ -7,7 +7,7 @@ export const UseEffect: FC = () => {
 
   useEffect(() => {
     document.title = (count + countTwo).toString()
-  }, [count, countTwo])
+  })
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {

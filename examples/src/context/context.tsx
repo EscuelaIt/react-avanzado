@@ -1,13 +1,19 @@
 import { createContext, FC, useContext, useState } from 'react'
 
-export const CounterContext = createContext<{
+interface CounterState {
   counter: number
-  setCounter: (newCounter: number) => void
+  setCounter: (newCounter: number) => Promise<void>
   incrementCounter: () => void
-}>({ counter: 0, setCounter: () => {}, incrementCounter: () => {} })
+}
+
+export const CounterContext = createContext<CounterState>({
+  counter: Number(localStorage.getItem('counter')) ?? 0,
+  setCounter: async () => {},
+  incrementCounter: () => {},
+})
 
 const ComponentA: FC = () => {
-  const { counter, setCounter, incrementCounter } = useContext(CounterContext)
+  const { counter, incrementCounter, setCounter } = useContext(CounterContext)
   return (
     <>
       <button onClick={() => setCounter(counter + 10)}>{counter}</button>
@@ -19,21 +25,24 @@ const ComponentA: FC = () => {
 const ComponentB: FC = () => {
   return (
     <CounterContext.Consumer>
-      {({ counter, setCounter }) => (
-        <button onClick={() => setCounter(counter + 10)}>{counter}</button>
-      )}
+      {({ counter, setCounter }) => <button onClick={() => setCounter(counter + 10)}>{counter}</button>}
     </CounterContext.Consumer>
   )
 }
 
 export const Context: FC = () => {
   const [state, setState] = useState(0)
+
+  async function setData() {
+    setState(1)
+  }
+
   return (
     <CounterContext.Provider
       value={{
         counter: state,
-        setCounter: counter => setState(counter),
-        incrementCounter: () => setState(state + 1)
+        setCounter: counter => setData(),
+        incrementCounter: () => setState(state + 1),
       }}
     >
       <ComponentA />

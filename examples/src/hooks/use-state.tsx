@@ -1,10 +1,10 @@
 import { FC, useState } from 'react'
 
 export const UseState: FC = () => {
-  const [value, setValue] = useState('...')
+  const [value, setValue] = useState('hola')
 
   const handleClick = () => {
-    setValue('Hello world')
+    setValue(prevState => `${prevState} mundo`)
   }
 
   return (
