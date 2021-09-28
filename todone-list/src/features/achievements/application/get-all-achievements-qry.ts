@@ -1,7 +1,7 @@
 import { Achievement } from '../domain/achievement'
 import { AchievementRepository } from '../domain/achievement-repository'
 
-export class GetAllAchievementsUseCase {
+export class GetAllAchievementsQry {
   constructor(private readonly achievementRepository: AchievementRepository) {}
 
   execute(): Promise<Achievement[]> {
