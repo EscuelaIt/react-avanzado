@@ -1,24 +1,28 @@
 import { AchievementHttpRepository } from './achievement-http-repository'
-import { anything, instance, mock, when } from 'ts-mockito'
+import { instance, mock, when } from 'ts-mockito'
 import { AchievementMother } from '../../../tests/achievement-mother'
+import { HttpClient } from '../../../core/http-client/http-client'
+import { AxiosResponse } from 'axios'
+import { Achievement } from '../domain/achievement'
 
 describe('AchievementHttpRepository', () => {
-  it('should get the achievements', () => {
-    const { achievementHttpRepository, global } = setup()
+  it('should get the achievements', async () => {
+    const { achievementHttpRepository, httpClient } = setup()
+    when(httpClient.get('/achievements')).thenResolve({
+      data: [AchievementMother.learnArchitectureDto()],
+    } as AxiosResponse)
 
-    when(global.fetch('/achievements')).thenResolve({
-      json(): Promise<any> {
-        return [AchievementMother.learnArchitectureDto()]
-      },
-    })
+    const actual = await achievementHttpRepository.findAll()
+
+    expect(actual).toEqual<Achievement[]>([AchievementMother.learnArchitecture()])
   })
 })
 
 function setup() {
-  const global = mock<typeof globalThis>()
+  const httpClient = mock<HttpClient>()
 
   return {
-    global,
-    achievementHttpRepository: new AchievementHttpRepository(instance(global)),
+    httpClient,
+    achievementHttpRepository: new AchievementHttpRepository(instance(httpClient)),
   }
 }
