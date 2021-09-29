@@ -1,5 +1,6 @@
 import { rest } from 'msw'
 import { response } from './response'
+import { AchievementMother } from '../tests/achievement-mother'
 
 export const handlers = [
   rest.post(`/oauth/token`, (_req, _, ctx) =>
@@ -10,5 +11,5 @@ export const handlers = [
       }),
     ),
   ),
-  rest.get(`/todos`, (_req, _, ctx) => response(ctx.json({ message: 'hello' }))),
+  rest.get(`/achievements`, (_req, _, ctx) => response(ctx.json([AchievementMother.learnArchitectureDto()]))),
 ]

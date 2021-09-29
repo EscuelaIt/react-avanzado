@@ -1,17 +1,29 @@
-import { FC } from 'react'
-import logo from './logo.svg'
-import './app.css'
+import { FC, useEffect, useState } from 'react'
+import styles from './app.module.css'
+import { GetAllAchievementsQry } from './features/achievements/application/get-all-achievements-qry'
+import { container } from './core/dependency-injection/container'
+import { Achievement } from './features/achievements/domain/achievement'
 
-export const App: FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Learn React
-      </a>
-    </header>
-  </div>
-)
+export const App: FC = () => {
+  const [achievements, setAchievements] = useState<Achievement[]>([])
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  async function fetchData() {
+    const getAllAchievementsQry = container.resolve(GetAllAchievementsQry)
+    const results = await getAllAchievementsQry.execute()
+    setAchievements(results)
+  }
+
+  return (
+    <main className={styles.container}>
+      <div>
+        {achievements.map(x => (
+          <p key={x.id}>{x.name}</p>
+        ))}
+      </div>
+    </main>
+  )
+}

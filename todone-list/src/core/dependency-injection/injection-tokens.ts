@@ -1,0 +1,2 @@
+export const ACHIEVEMENT_REPOSITORY = Symbol('ACHIEVEMENT_REPOSITORY')
+export const GLOBAL = Symbol('GLOBAL')
