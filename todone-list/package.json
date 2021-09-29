@@ -5,6 +5,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "build:dev": "env-cmd -f .env.dev craco build",
+    "build:pro": "env-cmd -f .env.pro craco build",
     "test": "craco test --coverage --watchAll=false",
     "format": "prettier --ignore-path .gitignore --write ."
   },
@@ -16,6 +18,7 @@
     "@types/node": "12.20.25",
     "@types/react": "17.0.22",
     "@types/react-dom": "17.0.9",
+    "axios": "0.21.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.3",
@@ -28,6 +31,7 @@
     "@babel/preset-typescript": "7.15.0",
     "@craco/craco": "6.3.0",
     "babel-plugin-transform-typescript-metadata": "0.3.2",
+    "env-cmd": "10.1.0",
     "msw": "0.35.0",
     "prettier": "2.4.1",
     "pretty-quick": "3.1.1",
