@@ -1,0 +1,12 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "testFiles": "**/*.e2e.ts",
+  "integrationFolder": "./e2e/specs",
+  "screenshotsFolder": "./e2e/screenshots",
+  "videosFolder": "./e2e/videos",
+  "pluginsFile": false,
+  "supportFile": false,
+  "fixturesFolder": false,
+  "watchForFileChanges": false,
+  "includeShadowDom": true
+}
