@@ -1,6 +1,6 @@
-import { Achievement } from '../domain/achievement'
-import type { AchievementRepository } from '../domain/achievement-repository'
 import { inject, injectable } from 'tsyringe'
+import { AchievementRepository } from '../domain/achievement-repository'
+import { Achievement } from '../domain/achievement'
 import { ACHIEVEMENT_REPOSITORY } from '../../../core/dependency-injection/injection-tokens'
 
 @injectable()
