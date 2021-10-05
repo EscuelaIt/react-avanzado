@@ -1,6 +1,6 @@
 import { GetAllAchievementsQry } from './get-all-achievements-qry'
 import { instance, mock, when } from 'ts-mockito'
-import { AchievementRepository } from '../domain/achievement-repository'
+import type { AchievementRepository } from '../domain/achievement-repository'
 import { Achievement } from '../domain/achievement'
 import { AchievementMother } from '../../../tests/achievement-mother'
 

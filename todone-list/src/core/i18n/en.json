@@ -1,0 +1,5 @@
+{
+  "homeTitle": "Welcome to React and react-i18next",
+  "home_title": "Welcome to React and {{value}}",
+  "menu_logo_subtitleName": "Welcome to React and react-i18next"
+}
