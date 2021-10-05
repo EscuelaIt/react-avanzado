@@ -23,7 +23,7 @@ export const App: FC = () => {
   return (
     <main className={styles.container}>
       <h1>{t('global:homeTitle')}</h1>
-      <h2>{t('achievements:homeTitle')}</h2>
+      <h2>{t('achievements:homeTitle', { framework: 'Angular' })}</h2>
       <AchievementForm />
       <div>
         {achievements.map(x => (
