@@ -4,11 +4,11 @@ import { GetAllAchievementsQry } from './features/achievements/application/get-a
 import { container } from './core/dependency-injection/container'
 import { Achievement } from './features/achievements/domain/achievement'
 import { AchievementForm } from './features/achievements/delivery/achievement-form'
-import { useI18n } from './core/i18n/use-i18n'
+import { useTranslation } from 'react-i18next'
 
 export const App: FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([])
-  const { t } = useI18n()
+  const { t } = useTranslation(['global', 'achievements'])
 
   useEffect(() => {
     fetchData()
@@ -22,7 +22,8 @@ export const App: FC = () => {
 
   return (
     <main className={styles.container}>
-      {t('homeTitle', { value: 5 })}
+      <h1>{t('global:homeTitle')}</h1>
+      <h2>{t('achievements:homeTitle')}</h2>
       <AchievementForm />
       <div>
         {achievements.map(x => (

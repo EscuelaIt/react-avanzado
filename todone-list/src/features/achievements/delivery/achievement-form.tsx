@@ -22,8 +22,6 @@ export const AchievementForm: FC = () => {
 
   return (
     <section>
-      <h2 className="foo">Hello world</h2>
-
       <form onSubmit={onSubmit}>
         <label htmlFor="name">Name</label>
         <input {...register('name', { required: true, minLength: 5 })} type="text" />
