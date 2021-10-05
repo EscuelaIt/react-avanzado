@@ -5,7 +5,6 @@ import { AchievementRepository } from '../domain/achievement-repository'
 import type { HttpClient } from '../../../core/http-client/http-client'
 import { HTTP_CLIENT } from '../../../core/dependency-injection/injection-tokens'
 import { AchievementCreate } from '../domain/achievement-create'
-import { CantCreateAchievementError } from '../domain/cant-create-achievement-error'
 
 @injectable()
 export class AchievementHttpRepository implements AchievementRepository {
@@ -19,13 +18,7 @@ export class AchievementHttpRepository implements AchievementRepository {
   }
 
   async create(achievementCreate: AchievementCreate): Promise<void> {
-    try {
-      await this.httpClient.post<AchievementCreate>(AchievementHttpRepository.URL, achievementCreate)
-    } catch (e) {
-      if (this.httpClient.isAxiosError(e) && e.code === '400') {
-        throw new CantCreateAchievementError()
-      }
-    }
+    await this.httpClient.post<AchievementCreate>(AchievementHttpRepository.URL, achievementCreate)
     return
   }
 }
